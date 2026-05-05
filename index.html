@@ -10,8 +10,8 @@
     --black: #050508;
     --blue-ring: #6a9fd8;
     --blue-glow: #4a7fc1;
-    --white: #f0f0f0;
-    --dim: rgba(240,240,240,0.42);
+    --white: #ffffff;
+    --dim: rgba(255,255,255,0.75);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,15 +24,30 @@
     overflow-x: hidden;
   }
 
+  /* ── BG IMAGE pinned to right, full height ── */
+  #bg-img {
+    position: fixed;
+    top: 0; right: 0;
+    width: auto;
+    height: 100vh;
+    object-fit: cover;
+    object-position: right center;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 0;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 38%);
+    mask-image: linear-gradient(to right, transparent 0%, black 38%);
+  }
+
   #stars-canvas {
     position: fixed; inset: 0;
-    pointer-events: none; z-index: 0;
+    pointer-events: none; z-index: 1;
   }
 
   /* nebula blobs */
   .nebula {
-    position: fixed; pointer-events: none; z-index: 0;
-    border-radius: 50%; filter: blur(100px); opacity: 0.1;
+    position: fixed; pointer-events: none; z-index: 1;
+    border-radius: 50%; filter: blur(100px); opacity: 0.08;
   }
   .nebula-1 {
     width: 480px; height: 480px;
@@ -53,7 +68,7 @@
 
   /* music btn */
   #music-btn {
-    position: fixed; top: 1.4rem; right: 1.4rem; z-index: 100;
+    position: fixed; top: 1.4rem; right: 1.4rem; z-index: 200;
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 50%;
@@ -67,7 +82,7 @@
 
   /* page */
   .page {
-    position: relative; z-index: 1;
+    position: relative; z-index: 2;
     display: flex; flex-direction: column;
     align-items: center;
     padding: 0 1.5rem;
@@ -255,6 +270,7 @@
 </head>
 <body>
 
+<img id="bg-img" src="assets/bg_dosa.jpg" alt="">
 <div class="nebula nebula-1"></div>
 <div class="nebula nebula-2"></div>
 <canvas id="stars-canvas"></canvas>
